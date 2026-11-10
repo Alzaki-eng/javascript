@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Calculator</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            color: #172554;
+            background: #f1f5f9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background:
+                radial-gradient(ellipse at 12% 15%, #dbeafe 0, transparent 38%),
+                radial-gradient(ellipse at 90% 85%, #ccfbf1 0, transparent 36%),
+                #f8fafc;
+        }
+
+        .calculator {
+            width: min(100%, 440px);
+            padding: 36px;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 0 24px 60px rgb(15 23 42 / 12%);
+        }
+
+        .brand-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 22px;
+            border-radius: 16px;
+            background: #ecfdf5;
+            font-size: 28px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #0f172a;
+            font-size: clamp(1.7rem, 5vw, 2rem);
+            letter-spacing: -0.04em;
+        }
+
+        .intro {
+            margin: 10px 0 28px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .rate-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 26px;
+            padding: 15px 17px;
+            border: 1px solid #d1fae5;
+            border-radius: 14px;
+            background: #f0fdf4;
+            color: #166534;
+            font-size: 0.95rem;
+        }
+
+        .rate-card strong {
+            color: #14532d;
+            font-size: 1.05rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 9px;
+            color: #334155;
+            font-size: 0.92rem;
+            font-weight: 650;
+        }
+
+        input {
+            width: 100%;
+            min-height: 52px;
+            padding: 0 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            outline: none;
+            background: #fff;
+            color: #0f172a;
+            font: inherit;
+            transition: border-color 150ms ease, box-shadow 150ms ease;
+        }
+
+        input:focus {
+            border-color: #0f9f6e;
+            box-shadow: 0 0 0 4px rgb(16 185 129 / 15%);
+        }
+
+        button {
+            width: 100%;
+            min-height: 52px;
+            margin-top: 18px;
+            border: 0;
+            border-radius: 12px;
+            background: #0f9f6e;
+            color: #fff;
+            cursor: pointer;
+            font: inherit;
+            font-weight: 700;
+            transition: background 150ms ease, transform 150ms ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            background: #087f5b;
+        }
+
+        button:focus-visible {
+            outline: 3px solid #6ee7b7;
+            outline-offset: 3px;
+        }
+
+        .result {
+            margin-top: 24px;
+            padding: 18px;
+            border-radius: 14px;
+            background: #f8fafc;
+        }
+
+        .result-label {
+            display: block;
+            margin-bottom: 7px;
+            color: #64748b;
+            font-size: 0.86rem;
+        }
+
+        #cost {
+            color: #0f172a;
+            font-size: 1.8rem;
+            font-weight: 750;
+            letter-spacing: -0.04em;
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                padding: 28px 22px;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="calculator">
+        <div class="brand-icon" aria-hidden="true">⚡</div>
+        <h1>Electricity bill Calculator</h1>
+        <p class="intro">Estimate your electricity cost based on the units you have used.</p>
+
+        <div class="rate-card">
+            <span>Rate per kWh</span>
+            <strong id="rate-display">6.00 per kWh</strong>
+        </div>
+
+        <form id="bill-form">
+            <label for="units">Units consumed (kWh)</label>
+            <input type="number" id="units" name="units" min="0" step="any" placeholder="e.g. 150" required>
+            <label for="rate">Charge per unit</label>
+            <input type="number" id="rate" name="rate" min="0" step="any" value="6" placeholder="e.g. 6" required>
+            <button type="submit">Calculate bill</button>
+        </form>
+
+        <div class="result">
+            <span class="result-label">Estimated total cost(in ₹)</span>
+            <output id="cost" for="units rate" aria-live="polite">—</output>
+        </div>
+    </main>
+    <script src="first.js"></script>
+</body>
+
+</html>
